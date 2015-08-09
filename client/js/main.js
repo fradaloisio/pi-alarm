@@ -1,0 +1,1 @@
+window.Client = angular.module('piAlarmClient', ['ng']);
