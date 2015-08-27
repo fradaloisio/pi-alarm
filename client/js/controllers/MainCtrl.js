@@ -18,7 +18,6 @@ Client.controller('MainCtrl', ['$scope','$http','getActive','setActive', functio
     });	
 
 	$scope.toggleActive = function(){
-		console.log('called '+$scope.active.checked);
 		setstatusPromise = setActive.setData($scope.active.checked);
 		setstatusPromise.then(function(result){
 			if (result == "true") {
