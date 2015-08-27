@@ -24,7 +24,6 @@ def routing(app):
         active.setActive(newStatus)
         return json.dumps(active.getActive())
     @app.route('/api/setDetection', methods=['GET'])
-
     def setDetection():
         newStatus = request.args.get('status')
         logger.info("Received %s" %(request.url))

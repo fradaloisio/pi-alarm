@@ -4,6 +4,7 @@ import time
 from lib.log import logger
 import lib.util as active
 import lib.api as api
+import lib.sender as sender
 
 
 
@@ -30,8 +31,9 @@ def main():
        #main loop
         while active.getActive():
             if active.getDetection():
-                print("DETECTION!")
-            time.sleep(0.2)
+                sender.emailAlert()
+                active.setDetection("false")
+                time.sleep(60)
 
 
         #in store insert deactivation

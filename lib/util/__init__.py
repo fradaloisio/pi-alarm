@@ -2,7 +2,7 @@ from lib.log import logger
 import re
 
 global active
-active = False
+active = True
 
 global DETECTION
 DETECTION = False
@@ -36,6 +36,9 @@ def setDetection(new):
     if re.search("true", str(new)):
         status = True
         logger.info("DETECTION!")
+    elif re.search("false", str(new)):
+            status = False
+            logger.info("DETECTION!")
     else:
         logger.warn("Invalid status %s for DETECTION" %(new))
         return

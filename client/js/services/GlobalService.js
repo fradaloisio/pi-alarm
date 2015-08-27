@@ -1,5 +1,5 @@
 
 
 var GlobalService = {
-	apiUrl : "http://192.168.1.49:5000"
+	apiUrl : "http://192.168.1.12:5000"
 };
