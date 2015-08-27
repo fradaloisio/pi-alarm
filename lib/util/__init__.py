@@ -4,6 +4,9 @@ import re
 global active
 active = False
 
+global DETECTION
+DETECTION = False
+
 def setActive(new):
     #if(newStatus is False or newStatus is "False" or newStatus is "false" or newStatus is 0 or newStatus is "0"):
     if re.search("false", str(new)):
@@ -18,7 +21,23 @@ def setActive(new):
         return
     global active
     active = status
+
 def getActive():
     global active
     logger.info("active status %s" %(str(active)))
     return active
+
+def getDetection():
+    global DETECTION
+    logger.info("DETECTION status %s" %(str(DETECTION)))
+    return DETECTION
+
+def setDetection(new):
+    if re.search("true", str(new)):
+        status = True
+        logger.info("DETECTION!")
+    else:
+        logger.warn("Invalid status %s for DETECTION" %(new))
+        return
+    global DETECTION
+    DETECTION = status

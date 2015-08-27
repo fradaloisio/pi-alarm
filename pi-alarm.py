@@ -1,7 +1,11 @@
+import time
+
 
 from lib.log import logger
 import lib.util as active
 import lib.api as api
+
+
 
 def store():
     #store entry in db
@@ -15,7 +19,6 @@ def main():
     #main
 
     # activate API
-
     if api.lunch():
         logger.info("API started")
     else:
@@ -23,12 +26,12 @@ def main():
 
 
     logger.info("Application started")
-    # while True:
-    #     pass
-        #main loop
-        # while active.getActive():
-        #     #do stuff
-        #     pass
+    while True:
+       #main loop
+        while active.getActive():
+            if active.getDetection():
+                print("DETECTION!")
+            time.sleep(0.2)
 
 
         #in store insert deactivation
