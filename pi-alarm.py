@@ -1,4 +1,5 @@
 import time
+import RPi.GPIO as GPIO                           #Import GPIO library
 
 
 from lib.log import logger
@@ -9,12 +10,12 @@ import lib.sender as sender
 
 
 def store():
-    #store entry in db
     pass
+    #store entry in db
 
 def email():
-    #send email
     pass
+    #send email
 
 def main():
     #main
@@ -25,20 +26,17 @@ def main():
     else:
         logger.error("API failed start")
 
-
+    GPIO.setmode(GPIO.BOARD)
+    pir = 26
+    GPIO.setup(pir, GPIO.IN)
     logger.info("Application started")
     while True:
-       #main loop
         while active.getActive():
-            if active.getDetection():
+            if GPIO.input(pir):
+                active.setDetection("true")
                 sender.emailAlert()
                 active.setDetection("false")
                 time.sleep(60)
-
-
-        #in store insert deactivation
-
-
 
 
 
