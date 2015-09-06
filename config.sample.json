@@ -1,4 +1,9 @@
 {
   "alarm":"email",
   "contact":"email@email.com;email2@email.com"
-}
+  "sender":{
+    "user" : "alert@email",
+    "password" : "xxx",
+    "smtp_server" : "mail.email",
+    "smpt_port" : 25
+  }

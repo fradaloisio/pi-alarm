@@ -33,12 +33,12 @@ def main():
     while True:
         while active.getActive():
             if GPIO.input(pir):
-                active.setDetection("true")
-                sender.emailAlert()
-                active.setDetection("false")
-                time.sleep(60)
-
-
+                time.sleep(1)
+                if GPIO.input(pir):
+                    active.setDetection("true")
+                    sender.emailAlert()
+                    active.setDetection("false")
+                    time.sleep(0.2)
 
 if __name__ == '__main__':
     main()

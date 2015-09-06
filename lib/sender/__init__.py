@@ -2,18 +2,21 @@
 
 import datetime
 import smtplib
+import json
 
 def emailAlert():
-    to = ['xxxxxx']
-    gmail_user = 'xxxxx'
-    gmail_pwd = 'xxx'
-    smtpserver = smtplib.SMTP("xxx", 25)
-    subject = "ALARM!"
+    with open("config.json") as json_file:
+        json_cfg = json.load(json_file)
+    to = [json_cfg["contact"]]
+    user = json_cfg["sender"]["user"]
+    pwd = json_cfg["sender"]["password"]
+    smtpserver = smtplib.SMTP(json_cfg["sender"]["smtp_server"], json_cfg["sender"]["smpt_port"])
+    subject = "PI-ALARM!"
     smtpserver.ehlo_or_helo_if_needed()
     smtpserver.starttls()
     smtpserver.ehlo_or_helo_if_needed()
-    smtpserver.login(gmail_user, gmail_pwd)
-    header = 'To:' + ", ".join(to) + '\n' + 'From: ' + gmail_user + '\n' + 'Subject: ' + subject + '\n'
+    smtpserver.login(user, pwd)
+    header = 'To:' + ", ".join(to) + '\n' + 'From: ' + user + '\n' + 'Subject: ' + subject + '\n'
     msg = header + '\n' + 'Detection at '+str(datetime.datetime.utcnow())+' UTC\n\n'
-    smtpserver.sendmail(gmail_user, to, msg)
+    smtpserver.sendmail(user, to, msg)
     smtpserver.close()
